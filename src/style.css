@@ -1,0 +1,23 @@
+:root {
+    --vg-selection-color: rgba(205, 1, 0, 0.8);
+    --vg-panel-border-color: rgba(255, 255, 255, 0.5);
+    --vg-overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+.vg-icon-button {
+    display: block;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+}
+
+body.vg-no-scroll {
+    overscroll-behavior: none;
+    overflow: hidden;
+    height: 100%;
+}
