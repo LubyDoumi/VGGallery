@@ -24,6 +24,10 @@ This userscript lets you browse photo threads in a clean gallery view and downlo
   - On the left, it moves backward
 - Tap/click the slideshow progress bar to change the speed (1s, 3s, or 10s)
 
+## Installation
+
+[Download the latest release](https://github.com/LubyDoumi/VGGallery/releases) and copy the file **vggallery.user.js** in your Userscript folder.
+
 ## Contribution
 
 ### Issues
