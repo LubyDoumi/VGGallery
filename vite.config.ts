@@ -43,6 +43,10 @@ export default defineConfig(({ mode }) => {
             "https://vipervault.link/*",
           ],
           "run-at": "document-start",
+          require: [
+            // fix JSZip not working on Tampermonkey
+            "data:application/javascript,%3BglobalThis.setImmediate%3DsetTimeout%3B",
+          ],
         },
         build: {
           externalGlobals: {

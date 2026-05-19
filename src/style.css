@@ -4,6 +4,11 @@
     --vg-overlay-bg: rgba(0, 0, 0, 0.5);
 }
 
+/* Hide scrollbar in Chrome */
+::-webkit-scrollbar {
+    display: none;
+}
+
 .vg-icon-button {
     display: block;
     position: absolute;
