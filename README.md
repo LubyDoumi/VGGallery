@@ -1,38 +1,60 @@
-# VGGallery — Gallery and Downloader for ViperGirls
+# VGGallery — Gallery & Downloader for ViperGirls
 
-This userscript lets you browse photo threads in a clean gallery view and download them easily.
+Stop browsing photo threads the hard way. VGGallery transforms any ViperGirls thread into a smooth, full-screen gallery — and lets you download everything in one click.
 
-## Features
+## ✨ Features
 
-- Gallery viewer
-- Navigate between all galleries in a thread
-- Download photos as a ZIP file
+- 🖼️ **Clean gallery viewer** — browse photos without the clutter
+- 🔀 **Thread navigation** — jump between all galleries in a thread
+- 📦 **One-click ZIP download** — grab everything at once
 
-## Supported Image Hosts
+## 🌐 Supported Image Hosts
 
 - Imx.to
 - Pixhost.to
 - Vipr.im
 
-## Gallery
+## 🎮 Gallery Controls
 
-- Zoom and pan the image
-- Tap/click the right side of the screen to go to the next image
-- Tap/click the left side of the screen to go to the previous image
-- Hold touch/click to toggle the slideshow
-  - On the right, it moves forward
-  - On the left, it moves backward
-- Tap/click the slideshow progress bar to change the speed (1s, 3s, or 10s)
+| Action | Control |
+|--------|---------|
+| Next image | Tap/click the right side |
+| Previous image | Tap/click the left side |
+| Toggle slideshow | Hold tap/click |
+| Slideshow direction | Hold on right (forward) or left (backward) |
+| Change slideshow speed | Tap the progress bar (1s · 3s · 10s) |
+| Zoom & pan | Pinch or scroll |
 
-## Installation
+## 📲 Installation
 
-[Download the latest release](https://github.com/LubyDoumi/VGGallery/releases) and copy the file **vggallery.user.js** in your Userscript folder.
+### 🍎 Safari — iOS & Mac
 
-## Contribution
+1. Install the [Userscripts](https://apps.apple.com/app/userscripts/id1463298887) extension from the App Store
+2. Go to the [Releases page](https://github.com/LubyDoumi/VGGallery/releases) and download **vggallery.user.js**
+3. Place the file in your Userscripts folder (found in the extension settings under **Userscripts Directory**)
+
+### 🦊 Firefox &nbsp;|&nbsp; 🌐 Chrome — Mac, Windows, Android
+
+1. Install the [Tampermonkey](https://www.tampermonkey.net/) extension ([Firefox](https://addons.mozilla.org/firefox/addon/tampermonkey/) · [Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo))
+2. Go to the [Releases page](https://github.com/LubyDoumi/VGGallery/releases)
+3. Click on the latest **vggallery.user.js** file — Tampermonkey will intercept it and prompt you to install
+4. Confirm the installation in Tampermonkey
+
+> Need help? See the [Tampermonkey FAQ](https://www.tampermonkey.net/faq.php).
+
+> **Note:** On first use, both Userscripts and Tampermonkey will ask you to grant access to image host websites. This is required for the script to load images.
+
+## ⚠️ Known issues
+
+- **Large threads may be slow or crash** — if a thread has many posts, try opening it normally first and use the gallery page by page instead of all at once.
+- **Zipping can be slow on Tampermonkey** — packaging a large download may take a moment after all images are fetched.
+- **Progress bar glitch on Tampermonkey** — a visual issue with the download progress bar may occasionally appear.
+
+## 🤝 Contribution
 
 ### Issues
 
-Open a new issue to report a bug or to request support for a new image host.
+Found a bug or want support for a new image host? [Open an issue](https://github.com/LubyDoumi/VGGallery/issues/new).
 
 ### Prerequisites
 
@@ -64,6 +86,6 @@ COPY_DEST=/path/to/Userscripts/vggallery.user.js
 
 The path to your Userscripts folder can be found in the Userscripts Safari extension settings under **Userscripts Directory**.
 
-## Usage of AI
+## 🤖 Usage of AI
 
 AI assistance was used during development via [Claude Code](https://claude.ai/code).
