@@ -1,6 +1,11 @@
 import { VGController } from "../VGController";
 import { XhrRequestTracker } from "../requests/XhrRequestTracker";
 
+export type VGImageData = {
+  pageURL: string;
+  thumbnailURL: string;
+};
+
 export abstract class VGHost {
   protected controller: VGController;
 
@@ -23,7 +28,7 @@ export abstract class VGHost {
    * @returns The URL of the image file.
    */
   public abstract FetchPage(
-    pageURL: string,
+    imageData: VGImageData,
     tracker: XhrRequestTracker,
   ): Promise<string | null | undefined>;
 

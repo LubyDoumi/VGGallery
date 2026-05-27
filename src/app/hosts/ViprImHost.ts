@@ -1,5 +1,5 @@
 import { XhrRequestTracker } from "../requests/XhrRequestTracker";
-import { VGHost } from "./VGHost";
+import { VGHost, VGImageData } from "./VGHost";
 
 export class ViprImHost extends VGHost {
   public override get HostName(): string {
@@ -29,12 +29,12 @@ export class ViprImHost extends VGHost {
   /////
 
   public override async FetchPage(
-    pageURL: string,
+    imageData: VGImageData,
     tracker: XhrRequestTracker,
   ): Promise<string | null | undefined> {
     const request = this.controller.RequestQueue.add({
       method: "GET",
-      url: pageURL,
+      url: imageData.pageURL,
     });
 
     tracker.TrackRequest(request, 0.1);

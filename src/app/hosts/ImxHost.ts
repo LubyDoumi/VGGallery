@@ -1,5 +1,5 @@
 import { XhrRequestTracker } from "../requests/XhrRequestTracker";
-import { VGHost } from "./VGHost";
+import { VGHost, VGImageData } from "./VGHost";
 
 export class ImxHost extends VGHost {
   public override get HostName(): string {
@@ -9,7 +9,7 @@ export class ImxHost extends VGHost {
   /////
 
   public override async FetchPage(
-    pageURL: string,
+    imageData: VGImageData,
     tracker: XhrRequestTracker,
   ): Promise<string | null | undefined> {
     const params = {
@@ -18,7 +18,7 @@ export class ImxHost extends VGHost {
 
     const request = this.controller.RequestQueue.add({
       method: "POST",
-      url: pageURL,
+      url: imageData.pageURL,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },

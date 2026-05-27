@@ -11,6 +11,15 @@ function copyOutputFile(dest: string) {
   return {
     name: "copy-output-file",
     closeBundle() {
+      const stat = fs.statSync(dest, { throwIfNoEntry: false });
+
+      if (stat?.isDirectory()) {
+        console.error(
+          `COPY_DEST must be a file path, not a directory: ${dest}`,
+        );
+        return;
+      }
+
       const outputFile = path.resolve(__dirname, "dist", "vggallery.user.js");
       fs.copyFileSync(outputFile, dest);
     },

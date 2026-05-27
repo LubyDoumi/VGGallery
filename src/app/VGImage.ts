@@ -13,7 +13,7 @@ export class VGImage {
   private imageBlob: Blob | null = null;
   private rawImageURL: string | null = null;
   private status: VGImageStatus = "thumbnail";
-  private imageBlobURL: string | null = null;
+  private preloadedImageURL: string | null = null;
 
   private zoomDataPerOrientation: Map<OrientationType, VGImageZoomData> =
     new Map<OrientationType, VGImageZoomData>();
@@ -54,8 +54,8 @@ export class VGImage {
     return this.imageBlob;
   }
 
-  public get ImageBlobURL(): string | null {
-    return this.imageBlobURL;
+  public get PreloadImageURL(): string | null {
+    return this.preloadedImageURL;
   }
 
   public get Status(): VGImageStatus {
@@ -83,7 +83,7 @@ export class VGImage {
 
     this.FetchImageURLTracker = new XhrRequestTracker();
     var imageFileURL = await this.host.FetchPage(
-      this.imageURL,
+      { pageURL: this.imageURL, thumbnailURL: this.imageThumbnailURL },
       this.FetchImageURLTracker,
     );
 
@@ -98,7 +98,7 @@ export class VGImage {
 
     this.FetchImageFileTrack = new XhrRequestTracker();
     var imageFileURL = await this.host.FetchPage(
-      this.imageURL,
+      { pageURL: this.imageURL, thumbnailURL: this.imageThumbnailURL },
       this.FetchImageFileTrack,
     );
 
@@ -113,12 +113,42 @@ export class VGImage {
   }
 
   public async PreloadImageForGallery(): Promise<void> {
-    if (this.imageBlobURL !== null) return;
+    if (this.preloadedImageURL !== null) return;
 
-    await this.FetchImageFile();
+    this.preloadedImageURL = await _TryPreloadWithImageElement(this);
 
-    if (this.imageBlob !== null)
-      this.imageBlobURL = URL.createObjectURL(this.imageBlob!);
+    if (this.preloadedImageURL !== null) return;
+
+    this.preloadedImageURL = await _TryLoadImageBlob(this);
+
+    /////
+
+    async function _TryPreloadWithImageElement(
+      _this: VGImage,
+    ): Promise<string | null> {
+      await _this.FetchRawImageURL();
+
+      if (_this.rawImageURL === null) return null;
+
+      const imageNode = new Image();
+      imageNode.src = _this.rawImageURL!;
+
+      try {
+        await imageNode.decode();
+
+        return _this.rawImageURL;
+      } catch {}
+
+      return null;
+    }
+
+    async function _TryLoadImageBlob(_this: VGImage): Promise<string | null> {
+      await _this.FetchImageFile();
+
+      if (_this.imageBlob === null) return null;
+
+      return URL.createObjectURL(_this.imageBlob);
+    }
   }
 
   public GetZoomData(orientation: OrientationType): VGImageZoomData {

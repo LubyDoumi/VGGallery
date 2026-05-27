@@ -15,11 +15,10 @@ export function GalleryImagePreloaderComponent(getImage: () => VGImage) {
       });
 
       displayedSrc.value = "";
+
       await img.PreloadImageForGallery();
 
-      if (!cancelled) {
-        displayedSrc.value = img.ImageBlobURL ?? "";
-      }
+      if (!cancelled) displayedSrc.value = img.PreloadImageURL ?? "";
     },
     { immediate: true },
   );
